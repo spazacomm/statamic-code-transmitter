@@ -1,0 +1,45 @@
+{
+  "name": "time-to-dev/statamic-code-transmitter",
+  "description": "A Statamic fieldtype that allows to pass HTML code to the frontend (inline).",
+  "version": "1.0.0",
+  "keywords": [
+      "statamic",
+      "fieldtype",
+      "сode",
+      "transmitter",
+      "html"
+  ],
+  "require": {
+    "php": "^8.1",
+    "illuminate/support": "^9.0 || ^10.0",
+    "statamic/cms": "^3.0 || ^4.0"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+        "TimeToDev\\CodeTransmitter\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "Stanislav Kovalenko",
+      "role": "Developer"
+    }
+  ],
+  "extra": {
+    "statamic": {
+      "name": "Code Transmitter",
+      "description": "A Statamic fieldtype that allows to pass HTML code to the frontend (inline)."
+    },
+    "laravel": {
+      "providers": [
+          "TimeToDev\\CodeTransmitter\\ServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "pixelfear/composer-dist-plugin": true
+    }
+  }
+}
