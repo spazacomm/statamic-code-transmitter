@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeToDev\CodeTransmitter;
+namespace SpazaComm\CodeTransmitter;
 
 use Statamic\Providers\AddonServiceProvider;
 
