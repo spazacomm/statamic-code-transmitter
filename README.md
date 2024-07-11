@@ -3,7 +3,9 @@
 </p>
 <hr>
 
-# Code Transmitter Fieldtype for Statamic 4
+## This is a Fork of the original statamic-code-transmitter. Modified to support v5 and Laravel 11.
+
+# Code Transmitter Fieldtype for Statamic 4 & 5
 
 ## Description
 
