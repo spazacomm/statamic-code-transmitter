@@ -17,7 +17,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-        "TimeToDev\\CodeTransmitter\\": "src"
+        "SpazaComm\\CodeTransmitter\\": "src"
     }
   },
   "authors": [
@@ -33,7 +33,7 @@
     },
     "laravel": {
       "providers": [
-          "TimeToDev\\CodeTransmitter\\ServiceProvider"
+          "SpazaComm\\CodeTransmitter\\ServiceProvider"
       ]
     }
   },
