@@ -3,6 +3,7 @@
 namespace SpazaComm\CodeTransmitter;
 
 use Statamic\Fields\Fieldtype;
+use Statamic\Facades\Antlers;
 
 class CodeTransmitter extends Fieldtype
 {
@@ -123,6 +124,10 @@ class CodeTransmitter extends Fieldtype
 
     public function augment($value)
     {
-        return str_replace('<?php', '&lt;?php', $value);
+        // Parse the value with the Antlers parser
+        $parsedValue = Antlers::parse($value);
+
+        // Replace PHP tags to avoid conflicts
+        return str_replace('<?php', '&lt;?php', $parsedValue);
     }
 }
