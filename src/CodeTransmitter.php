@@ -45,89 +45,102 @@ class CodeTransmitter extends Fieldtype
         return $data ?? $this->config('code');
     }
 
-    protected function configFieldItems(): array
+     protected function configFieldItems(): array
     {
         return [
-            'code' => [
-                'display' => __('Code'),
-                'type' => 'code',
-                'mode' => 'htmlmixed',
-                'default' => '<!-- Paste your code here -->',
-            ],
-            'theme' => [
-                'display' => __('Display'),
-                'instructions' => __('statamic::fieldtypes.code.config.theme'),
-                'type' => 'select',
-                'default' => 'material',
-                'options' => [
-                    'material' => __('Dark'),
-                    'light' => __('Light'),
+            [
+                'display' => __('Input Behavior'),
+                'fields' => [
+                    'code' => [
+                        'display' => __('Code'),
+                        'type' => 'code',
+                        'mode' => 'htmlmixed',
+                        'default' => '<!-- Paste your code here -->',
+                    ],
+                    'theme' => [
+                        'display' => __('Display'),
+                        'instructions' => __('statamic::fieldtypes.code.config.theme'),
+                        'type' => 'select',
+                        'default' => 'material',
+                        'options' => [
+                            'material' => __('Dark'),
+                            'light' => __('Light'),
+                        ],
+                        'width' => 50,
+                    ],
+                    'mode' => [
+                        'display' => __('Mode'),
+                        'instructions' => __('statamic::fieldtypes.code.config.mode'),
+                        'type' => 'select',
+                        'default' => 'htmlmixed',
+                        'options' => [
+                            'css' => 'CSS',
+                            'htmlmixed' => 'HTML',
+                            'javascript' => 'JavaScript',
+                        ],
+                        'width' => 50,
+                    ],
+                    'indent_type' => [
+                        'display' => __('Indent Type'),
+                        'instructions' => __('statamic::fieldtypes.code.config.indent_type'),
+                        'type' => 'select',
+                        'default' => 'tabs',
+                        'options' => [
+                            'tabs' => __('Tabs'),
+                            'spaces' => __('Spaces'),
+                        ],
+                        'width' => 50,
+                    ],
+                    'indent_size' => [
+                        'display' => __('Indent Size'),
+                        'instructions' => __('statamic::fieldtypes.code.config.indent_size'),
+                        'type' => 'integer',
+                        'default' => 4,
+                        'width' => 50,
+                    ],
+                    'key_map' => [
+                        'display' => __('Key Mappings'),
+                        'instructions' => __('statamic::fieldtypes.code.config.key_map'),
+                        'type' => 'select',
+                        'default' => 'default',
+                        'options' => [
+                            'default' => 'Default',
+                            'sublime' => 'Sublime',
+                            'vim' => 'Vim',
+                        ],
+                        'width' => 50,
+                    ],
+                    'line_numbers' => [
+                        'display' => __('Show Line Numbers'),
+                        'type' => 'toggle',
+                        'default' => true,
+                        'width' => 50,
+                    ],
+                    'line_wrapping' => [
+                        'display' => __('Enable Line Wrapping'),
+                        'type' => 'toggle',
+                        'default' => true,
+                        'width' => 50,
+                    ],
                 ],
-                'width' => 50,
             ],
-            'mode' => [
-                'display' => __('Mode'),
-                'instructions' => __('statamic::fieldtypes.code.config.mode'),
-                'type' => 'select',
-                'default' => 'htmlmixed',
-                'options' => [
-                    'css' => 'CSS',
-                    'htmlmixed' => 'HTML',
-                    'javascript' => 'JavaScript',
+            [
+                'display' => 'Antlers',
+                'fields' => [
+                    'antlers' => [
+                        'display' => __('Allow Antlers'),
+                        'instructions' => __('statamic::fieldtypes.code.config.antlers'),
+                        'type' => 'toggle',
+                    ],
                 ],
-                'width' => 50,
-            ],
-            'indent_type' => [
-                'display' => __('Indent Type'),
-                'instructions' => __('statamic::fieldtypes.code.config.indent_type'),
-                'type' => 'select',
-                'default' => 'tabs',
-                'options' => [
-                    'tabs' => __('Tabs'),
-                    'spaces' => __('Spaces'),
-                ],
-                'width' => 50,
-            ],
-            'indent_size' => [
-                'display' => __('Indent Size'),
-                'instructions' => __('statamic::fieldtypes.code.config.indent_size'),
-                'type' => 'integer',
-                'default' => 4,
-                'width' => 50,
-            ],
-            'key_map' => [
-                'display' => __('Key Mappings'),
-                'instructions' => __('statamic::fieldtypes.code.config.key_map'),
-                'type' => 'select',
-                'default' => 'default',
-                'options' => [
-                    'default' => 'Default',
-                    'sublime' => 'Sublime',
-                    'vim' => 'Vim',
-                ],
-                'width' => 50,
-            ],
-            'line_numbers' => [
-                'display' => __('Show Line Numbers'),
-                'type' => 'toggle',
-                'default' => true,
-                'width' => 50,
-            ],
-            'line_wrapping' => [
-                'display' => __('Enable Line Wrapping'),
-                'type' => 'toggle',
-                'default' => true,
-                'width' => 50,
             ],
         ];
     }
 
-    public function augment($value)
-    {
-        // Parse the value with the Antlers parser
-        $parsedValue = Antlers::parse($value);
 
-        // Replace PHP tags to avoid conflicts
-        return str_replace('<?php', '&lt;?php', $parsedValue);
+    
+     public function augment($value)
+    {
+        return str_replace('<?php', '&lt;?php', $value);
     }
 }
